@@ -30,7 +30,7 @@ class Topic(models.Model):
     last_updated = models.DateTimeField(auto_now_add=True)
     board = models.ForeignKey(Board, related_name='topics',on_delete=models.PROTECT)
     starter = models.ForeignKey(User, related_name='topics',on_delete=models.PROTECT)
-
+    last_update = models.DateTimeField(auto_now_add=True)
 
 class Post(models.Model):
     message = models.TextField(max_length=4000)
@@ -39,7 +39,7 @@ class Post(models.Model):
     updated_at = models.DateTimeField(null=True)
     created_by = models.ForeignKey(User, related_name='posts',on_delete=models.PROTECT)
     updated_by = models.ForeignKey(User, null=True, related_name='+', on_delete=models.PROTECT)
-    
+    updated_by = models.ForeignKey(User, null=True, related_name='+', on_delete=models.PROTECT)
 class Boards(models.Model):
     name = models.CharField(max_length=30, unique=True)
     descirption = models.CharField(max_length=100)
